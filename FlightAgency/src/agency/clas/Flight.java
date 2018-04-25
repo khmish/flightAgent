@@ -5,6 +5,9 @@
  */
 package agency.clas;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author whatup
@@ -15,11 +18,14 @@ public class Flight {
     private String Airplane_Code;
     private String From_Airport_Code;
     private String Distanation_Airport_Code;
-    private String Depart_time;
-    private String Arrival_time;
+    private Time Depart_time;
+    private Time Arrival_time;
+    private Date Depart_Date;
+    private Date Arrival_Date;
     private int Status;
     private String Cap_User_Id;
-    public Flight(String Number,String Airplane_Code,String From_Airport_Code,String Distanation_Airport_Code,String Depart_time,String Arrival_time,int Status,String Cap_User_Id){
+    
+    public Flight(String Number,String Airplane_Code,String From_Airport_Code,String Distanation_Airport_Code,Time Depart_time,Time Arrival_time,int Status,String Cap_User_Id,Date Depart_Date,Date Arrival_Date){
     this.Number=Number;
     this.Airplane_Code=Airplane_Code;
     this.From_Airport_Code=From_Airport_Code;
@@ -28,6 +34,8 @@ public class Flight {
     this.Arrival_time=Arrival_time;
     this.Status=Status;
     this.Cap_User_Id=Cap_User_Id;
+    this.Depart_Date=Depart_Date;
+    this.Arrival_Date=Arrival_Date;
     }
 
     public String getNumber() {
@@ -62,22 +70,6 @@ public class Flight {
         this.Distanation_Airport_Code = Distanation_Airport_Code;
     }
 
-    public String getDepart_time() {
-        return Depart_time;
-    }
-
-    public void setDepart_time(String Depart_time) {
-        this.Depart_time = Depart_time;
-    }
-
-    public String getArrival_time() {
-        return Arrival_time;
-    }
-
-    public void setArrival_time(String Arrival_time) {
-        this.Arrival_time = Arrival_time;
-    }
-
     public int getStatus() {
         return Status;
     }
@@ -92,5 +84,37 @@ public class Flight {
 
     public void setCap_User_Id(String Cap_User_Id) {
         this.Cap_User_Id = Cap_User_Id;
+    }
+
+    public Time getDepart_time() {
+        return Depart_time;
+    }
+
+    public void setDepart_time(Time Depart_time) {
+        this.Depart_time = Depart_time;
+    }
+
+    public Time getArrival_time() {
+        return Arrival_time;
+    }
+
+    public void setArrival_time(Time Arrival_time) {
+        this.Arrival_time = Arrival_time;
+    }
+
+    public Date getDepart_Date() {
+        return Depart_Date;
+    }
+
+    public void setDepart_Date(Date Depart_Date) {
+        this.Depart_Date = Depart_Date;
+    }
+
+    public Date getArrival_Date() {
+        return Arrival_Date;
+    }
+
+    public void setArrival_Date(Date Arrival_Date) {
+        this.Arrival_Date = Arrival_Date;
     }
 }
