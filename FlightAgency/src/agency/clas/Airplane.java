@@ -19,6 +19,10 @@ public class Airplane {
         this.Total_Sets=Total_Sets;
         this.Description=Description;
     }
+    public Airplane()
+    {
+        
+    }
     public String getAirplane_Code() {
         return Airplane_Code;
     }

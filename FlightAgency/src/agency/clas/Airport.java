@@ -22,6 +22,9 @@ public class Airport {
         this.Name=Name;
         this.Description=Description;
     }
+    public Airport(){
+        
+    }
     public String getAirport_code() {
         return Airport_code;
     }
