@@ -5,6 +5,10 @@
  */
 package agency.clas.frames;
 
+import agency.clas.Airport;
+import agency.clas.DbTables.AirportsDB;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author whatup
@@ -38,6 +42,11 @@ public class AirportsForm extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         txtCode.setEditable(false);
 
@@ -50,6 +59,11 @@ public class AirportsForm extends javax.swing.JFrame {
         jLabel4.setText("Description");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +114,18 @@ public class AirportsForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        AirportsDB airportsDB= new AirportsDB();
+        Airport airport= new Airport(txtCode.getText(), txtCity.getText(), txtAirpotName.getText(), txtDescription.getText());
+        airportsDB.addNew(airport);
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtCode.setText(LocalDateTime.now()+"");
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
