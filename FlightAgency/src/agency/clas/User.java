@@ -31,6 +31,10 @@ public class User {
         this.TypeUser=TypeUser;
         
     }
+     public User()
+     {
+         
+     }
     public String getId() {
         return Id;
     }
@@ -94,6 +98,10 @@ public class User {
     public void setTypeUser(int TypeUser) {
         this.TypeUser = TypeUser;
     }
-    
+
+    @Override
+    public String toString() {
+        return "User{" + "Id=" + Id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", Phone=" + Phone + ", Address=" + Address + ", Password=" + Password + ", Email=" + Email + ", TypeUser=" + TypeUser + '}';
+    }
     
 }
