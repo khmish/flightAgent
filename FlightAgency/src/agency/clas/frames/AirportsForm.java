@@ -117,6 +117,7 @@ public class AirportsForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        txtCode.setText(LocalDateTime.now()+"");
         AirportsDB airportsDB= new AirportsDB();
         Airport airport= new Airport(txtCode.getText(), txtCity.getText(), txtAirpotName.getText(), txtDescription.getText());
         airportsDB.addNew(airport);
@@ -124,7 +125,7 @@ public class AirportsForm extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        txtCode.setText(LocalDateTime.now()+"");
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**

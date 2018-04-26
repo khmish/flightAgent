@@ -18,6 +18,9 @@ public class Class_Booking {
         this.Code=Code;
         this.Name= Name;
     }
+    public Class_Booking(){
+        
+    }
     public int getCode() {
         return Code;
     }

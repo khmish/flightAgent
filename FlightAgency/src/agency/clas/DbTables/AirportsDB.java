@@ -132,4 +132,28 @@ public class AirportsDB {
         }
         return airport;
     }
+    public Airport findByCity(String city) {
+        Airport airport = new Airport();
+        try {
+            //
+            database.connect();
+
+            ps = database.prepareStatement("SELECT Airport_code, Airport_city, Airport_name, Airport_Description FROM airport WHERE Airport_city=?");
+            ps.setString(1, city);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                airport.setAirport_code(rs.getString("Airport_code"));
+                airport.setCity(rs.getString("Airport_city"));
+                airport.setName(rs.getString("Airport_name"));
+                airport.setDescription(rs.getString("Airport_Description"));
+            }
+            ps.close();
+            database.close();
+            return airport;
+        } catch (SQLException ex) {
+            Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return airport;
+    }
 }
