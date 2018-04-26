@@ -8,6 +8,9 @@ package agency.clas.frames;
 import agency.clas.Airport;
 import agency.clas.DbTables.AirportsDB;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,8 +22,17 @@ public class TbAirportsForm extends javax.swing.JFrame {
     /**
      * Creates new form TbAirportsForm
      */
+    FightForm frame;
+    int from = 0;
+
     public TbAirportsForm() {
         initComponents();
+    }
+
+    public TbAirportsForm(FightForm frame, int from) {
+        initComponents();
+        this.frame = frame;
+        this.from = from;
     }
 
     /**
@@ -34,8 +46,9 @@ public class TbAirportsForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnEdit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -55,13 +68,25 @@ public class TbAirportsForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        btnEdit.setText("Select");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(btnEdit)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,7 +94,9 @@ public class TbAirportsForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btnEdit)
+                .addContainerGap())
         );
 
         pack();
@@ -80,7 +107,7 @@ public class TbAirportsForm extends javax.swing.JFrame {
         AirportsDB airportsDB = new AirportsDB();
 
         DefaultTableModel model = new DefaultTableModel();
-        String[] column = {"code","city","name" ,"description"};
+        String[] column = {"code", "city", "name", "description"};
         model.setColumnIdentifiers(column);
 
         //This method to show all the attendence after user select specific event
@@ -91,17 +118,30 @@ public class TbAirportsForm extends javax.swing.JFrame {
         for (int i = 0; i < arrayAirports.size(); i++) {
 
             String Airport_code = arrayAirports.get(i).getAirport_code();
-            String City  = arrayAirports.get(i).getCity();
+            String City = arrayAirports.get(i).getCity();
             String Name = arrayAirports.get(i).getName();
             String Descriptions = arrayAirports.get(i).getDescription();
             //String description = item.get(i).getType();
 
-            String[] row = {Airport_code,City,Name, Descriptions};
+            String[] row = {Airport_code, City, Name, Descriptions};
             model.addRow(row);
 
         }
         jTable1.setModel(model);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        if (from==1) {
+            frame.txtFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+            frame.laFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        } else {
+            frame.txtTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+            frame.laTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        }
+        dispose();
+        
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +179,7 @@ public class TbAirportsForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEdit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

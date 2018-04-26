@@ -22,8 +22,13 @@ public class TbAirplanesForm extends javax.swing.JFrame {
     /**
      * Creates new form TbAirplanesForm
      */
+    FightForm fightForm;
     public TbAirplanesForm() {
         initComponents();
+    }
+    public TbAirplanesForm(FightForm fightForm) {
+        initComponents();
+        this.fightForm=fightForm;
     }
 
     /**
@@ -37,8 +42,9 @@ public class TbAirplanesForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnEdit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -58,13 +64,25 @@ public class TbAirplanesForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        btnEdit.setText("Select");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,7 +90,9 @@ public class TbAirplanesForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btnEdit)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,6 +100,7 @@ public class TbAirplanesForm extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        fightForm.hide();
         AirplanesDB airplanesDB = new AirplanesDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -104,6 +125,15 @@ public class TbAirplanesForm extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        
+        fightForm.laAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
+        fightForm.txtAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
+        fightForm.show();
+        dispose();
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,6 +171,7 @@ public class TbAirplanesForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEdit;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
