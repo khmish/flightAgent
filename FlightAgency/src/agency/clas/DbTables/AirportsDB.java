@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -155,5 +156,32 @@ public class AirportsDB {
             Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
         }
         return airport;
+    }
+    public ArrayList<Airport> AllAirport() {
+        ArrayList<Airport> airports= new ArrayList<Airport>();
+        
+        try {
+            //
+            database.connect();
+
+            ps = database.prepareStatement("SELECT Airport_code, Airport_city, Airport_name, Airport_Description FROM airport");
+            
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Airport airport = new Airport();
+                airport.setAirport_code(rs.getString("Airport_code"));
+                airport.setCity(rs.getString("Airport_city"));
+                airport.setName(rs.getString("Airport_name"));
+                airport.setDescription(rs.getString("Airport_Description"));
+                airports.add(airport);
+            }
+            ps.close();
+            database.close();
+            return airports;
+        } catch (SQLException ex) {
+            Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return airports;
     }
 }

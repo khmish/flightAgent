@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -128,6 +129,34 @@ public class AirplanesDB {
             Logger.getLogger(Airplane.class.getName()).log(Level.SEVERE, null, ex);
         }
         return airplane;
+    }
+    public ArrayList<Airplane> AllAirplanes()
+    {
+        ArrayList<Airplane> airplanes= new ArrayList<Airplane>();
+        
+        try {
+            //
+            database.connect();
+            
+            ps = database.prepareStatement("SELECT Airplane_code, Airplane_total_sets, Airplane_Description FROM airplane ");
+            
+                        
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                Airplane airplane= new Airplane();
+                airplane.setAirplane_Code(rs.getString("Airplane_code"));
+                airplane.setTotal_Sets(rs.getInt("Airplane_total_sets"));
+                airplane.setDescription(rs.getString("Airplane_Description"));
+                airplanes.add(airplane);
+            }
+            ps.close();
+            database.close();
+            return airplanes;
+        } catch (SQLException ex) {
+            Logger.getLogger(Airplane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return airplanes;
     }
     
 }

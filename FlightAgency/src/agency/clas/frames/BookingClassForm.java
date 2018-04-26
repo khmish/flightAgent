@@ -5,6 +5,9 @@
  */
 package agency.clas.frames;
 
+import agency.clas.Class_Booking;
+import agency.clas.DbTables.Class_BookingDB;
+
 /**
  *
  * @author whatup
@@ -41,6 +44,11 @@ public class BookingClassForm extends javax.swing.JFrame {
         jLabel2.setText("Name");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Classes panel");
@@ -89,6 +97,13 @@ public class BookingClassForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Class_BookingDB class_BookingDB = new Class_BookingDB();
+        Class_Booking class_Booking=new Class_Booking(Integer.parseInt(txtCode.getText()), txtClass.getText());
+        class_BookingDB.addNew(class_Booking);
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
