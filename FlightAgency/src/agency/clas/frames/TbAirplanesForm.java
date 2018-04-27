@@ -23,12 +23,15 @@ public class TbAirplanesForm extends javax.swing.JFrame {
      * Creates new form TbAirplanesForm
      */
     FightForm fightForm;
+    boolean isfightForm=false;
     public TbAirplanesForm() {
         initComponents();
+        isfightForm=false;
     }
     public TbAirplanesForm(FightForm fightForm) {
         initComponents();
         this.fightForm=fightForm;
+        isfightForm=true;
     }
 
     /**
@@ -100,7 +103,11 @@ public class TbAirplanesForm extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        fightForm.hide();
+        try {
+            fightForm.hide();
+        } catch (Exception e) {
+        }
+        
         AirplanesDB airplanesDB = new AirplanesDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -129,9 +136,14 @@ public class TbAirplanesForm extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         
-        fightForm.laAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
-        fightForm.txtAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
-        fightForm.show();
+        if (isfightForm) {
+            fightForm.laAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
+            fightForm.txtAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
+            fightForm.show();
+        }
+        else{
+            
+        }
         dispose();
     }//GEN-LAST:event_btnEditActionPerformed
 

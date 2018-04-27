@@ -22,14 +22,18 @@ public class TbAirportsForm extends javax.swing.JFrame {
     FightForm frame;
     int from = 0;
 
+    boolean isframe = false;
+
     public TbAirportsForm() {
         initComponents();
+        isframe = false;
     }
 
     public TbAirportsForm(FightForm frame, int from) {
         initComponents();
         this.frame = frame;
         this.from = from;
+        isframe = true;
     }
 
     /**
@@ -101,7 +105,11 @@ public class TbAirportsForm extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        frame.hide();
+        try {
+            frame.hide();
+        } catch (Exception e) {
+        }
+
         AirportsDB airportsDB = new AirportsDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -130,16 +138,18 @@ public class TbAirportsForm extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        frame.show();
-        if (from==1) {
-            frame.txtFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
-            frame.laFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
-        } else {
-            frame.txtTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
-            frame.laTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        if (isframe) {
+            frame.show();
+            if (from == 1) {
+                frame.txtFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+                frame.laFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+            } else {
+                frame.txtTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+                frame.laTo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+            }
         }
         dispose();
-        
+
     }//GEN-LAST:event_btnEditActionPerformed
 
     /**

@@ -58,20 +58,20 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton3" min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnBooking" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnProfile" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnHistory" min="-2" pref="161" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton5" min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="jButton6" min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnAirports" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnFlights" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnAirplane" min="-2" pref="161" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton8" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
-                      <Component id="jButton7" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="btnClasses" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="UsersPanel" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -83,24 +83,24 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton7" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="UsersPanel" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton8" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="btnClasses" min="-2" pref="84" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton2" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="jButton4" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnProfile" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnAirplane" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton3" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="jButton6" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnBooking" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnFlights" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton5" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnAirports" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Component id="btnHistory" alignment="3" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -110,45 +110,60 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="btnFlights">
           <Properties>
             <Property name="text" type="java.lang.String" value="Filght panel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFlightsActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="btnClasses">
           <Properties>
             <Property name="text" type="java.lang.String" value="Classes panel"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="btnAirports">
           <Properties>
             <Property name="text" type="java.lang.String" value="Airport panel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAirportsActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="btnAirplane">
           <Properties>
             <Property name="text" type="java.lang.String" value="Airplane panel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAirplaneActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnHistory">
           <Properties>
             <Property name="text" type="java.lang.String" value="Flight History"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="btnBooking">
           <Properties>
             <Property name="text" type="java.lang.String" value="Booking"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnProfile">
           <Properties>
             <Property name="text" type="java.lang.String" value="User Profile"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProfileActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton7">
+        <Component class="javax.swing.JButton" name="UsersPanel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Users panel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsersPanelActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

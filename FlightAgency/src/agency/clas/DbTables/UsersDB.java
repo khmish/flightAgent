@@ -66,7 +66,7 @@ public class UsersDB {
             //
             database.connect();
             
-            ps = database.prepareStatement("UPDATE user SET  User_firstName=?, User_LastName=?, User_Phone=?, User_Address=?, User_Type=0, User_Password=?, User_Email=? WHERE User_Id=?");
+            ps = database.prepareStatement("UPDATE user SET  User_firstName=?, User_LastName=?, User_Phone=?, User_Address=?,  User_Password=?, User_Email=? WHERE User_Id=?");
             
             ps.setString(1, updateUser.getFirstName());
             ps.setString(2, updateUser.getLastName());
