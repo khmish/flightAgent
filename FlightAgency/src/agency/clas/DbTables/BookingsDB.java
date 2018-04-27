@@ -42,6 +42,26 @@ public class BookingsDB {
         }
         return false;
     }
+    public boolean addQuick(String newBooking,int classes)
+    {
+        try {
+            //
+            database.connect();
+            
+            ps = database.prepareStatement("INSERT INTO booking(Booking_Code, Booking_Class_Code) VALUES(?,?)");
+           
+            ps.setString(1, newBooking);
+            ps.setInt(2, classes);
+
+            int x=ps.executeUpdate();
+            ps.close();
+            database.close();
+            return (x>0)?true:false;
+        } catch (SQLException ex) {
+            Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     public boolean delete(String code)
     {
         try {

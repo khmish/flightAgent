@@ -139,6 +139,7 @@ public class TbAirplanesForm extends javax.swing.JFrame {
         if (isfightForm) {
             fightForm.laAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
             fightForm.txtAirplane.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
+            fightForm.laNumSeats.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2)+"");
             fightForm.show();
         }
         else{

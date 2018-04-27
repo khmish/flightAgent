@@ -5,9 +5,11 @@
  */
 package agency.clas.frames;
 
-
+import agency.clas.DbTables.BookingsDB;
 import agency.clas.DbTables.FlightsDB;
+import agency.clas.DbTables.StopsDB;
 import agency.clas.Flight;
+import agency.clas.Stops;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.Date;
@@ -15,12 +17,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import java.sql.Time;
 //import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author whatup
@@ -76,8 +74,15 @@ public class FightForm extends javax.swing.JFrame {
         txtTo = new javax.swing.JTextField();
         txtCap = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        laNumSeats = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.setBorder(null);
@@ -109,6 +114,7 @@ public class FightForm extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setSelectedIndex(0);
         jScrollPane1.setViewportView(jList1);
 
         txtAirplane.setEnabled(false);
@@ -158,66 +164,73 @@ public class FightForm extends javax.swing.JFrame {
 
         jLabel2.setText("Airplane");
 
+        laNumSeats.setText("jLabel8");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(35, 35, 35)
-                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(65, 65, 65)
-                        .addComponent(txtAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(laAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(82, 82, 82)
-                        .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(laFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(97, 97, 97)
-                        .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(laTo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(46, 46, 46)
-                        .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(sDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(47, 47, 47)
-                        .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(sArrival, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(71, 71, 71)
-                        .addComponent(txtCap, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(btnCap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(laCap, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(35, 35, 35)
+                                .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(65, 65, 65)
+                                .addComponent(txtAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(laAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(82, 82, 82)
+                                .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(laFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(97, 97, 97)
+                                .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(laTo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(46, 46, 46)
+                                .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(sDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(47, 47, 47)
+                                .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(sArrival, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(71, 71, 71)
+                                .addComponent(txtCap, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(btnCap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(laCap, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(laNumSeats)
+                        .addGap(43, 43, 43))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,25 +307,38 @@ public class FightForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(laCap)))
-                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(laNumSeats)))
                 .addContainerGap())
         );
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +346,9 @@ public class FightForm extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(42, 42, 42))
         );
 
@@ -329,52 +357,65 @@ public class FightForm extends javax.swing.JFrame {
 
     private void btnFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFromActionPerformed
         // TODO add your handling code here:
-        TbAirportsForm airportsForm = new TbAirportsForm(this,1);
+        TbAirportsForm airportsForm = new TbAirportsForm(this, 1);
         airportsForm.setVisible(true);
         //test11.setVisible(true);
     }//GEN-LAST:event_btnFromActionPerformed
 
     private void btnToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToActionPerformed
         // TODO add your handling code here:
-        TbAirportsForm airportsForm = new TbAirportsForm(this,0);
+        TbAirportsForm airportsForm = new TbAirportsForm(this, 0);
         airportsForm.setVisible(true);
     }//GEN-LAST:event_btnToActionPerformed
 
     private void btnAirplaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirplaneActionPerformed
         // TODO add your handling code here:
-        TbAirplanesForm airplanesForm= new TbAirplanesForm(this);
+        TbAirplanesForm airplanesForm = new TbAirplanesForm(this);
         airplanesForm.setVisible(true);
     }//GEN-LAST:event_btnAirplaneActionPerformed
 
     private void btnCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapActionPerformed
         // TODO add your handling code here:
-        TbCaptinsForm captinsForm= new TbCaptinsForm(this);
+        TbCaptinsForm captinsForm = new TbCaptinsForm(this);
         captinsForm.setVisible(true);
     }//GEN-LAST:event_btnCapActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        FlightsDB flightsDB= new FlightsDB();
-        txtNumber.setText(LocalDateTime.now()+"");
-        
+        FlightsDB flightsDB = new FlightsDB();
+        txtNumber.setText(LocalDateTime.now() + "");
+
         //format the date *******************
-        java.sql.Date dep = new java.sql.Date(jXDatePicker2.getDate().getYear(), jXDatePicker2.getDate().getMonth(),jXDatePicker2.getDate().getDate());
-        java.sql.Date arr = new java.sql.Date(jXDatePicker3.getDate().getYear(), jXDatePicker3.getDate().getMonth(),jXDatePicker3.getDate().getDate());
+        java.sql.Date dep = new java.sql.Date(jXDatePicker2.getDate().getYear(), jXDatePicker2.getDate().getMonth(), jXDatePicker2.getDate().getDate());
+        java.sql.Date arr = new java.sql.Date(jXDatePicker3.getDate().getYear(), jXDatePicker3.getDate().getMonth(), jXDatePicker3.getDate().getDate());
         Flight flight;
         //format the time to depart*******************
-        String Depart=sDepart.getValue()+"";
-        int hoursDepart=Integer.parseInt(Depart.substring(10, 13).trim());
-        int minsDepart=Integer.parseInt(Depart.substring(14, 16).trim());
+        String Depart = sDepart.getValue() + "";
+        int hoursDepart = Integer.parseInt(Depart.substring(10, 13).trim());
+        int minsDepart = Integer.parseInt(Depart.substring(14, 16).trim());
         //format the time to arrive*******************
-        String Arrival=sArrival.getValue()+"";
-        int hoursArrive=Integer.parseInt(Arrival.substring(10, 13).trim());
-        int minsArrive=Integer.parseInt(Arrival.substring(14, 16).trim());
+        String Arrival = sArrival.getValue() + "";
+        int hoursArrive = Integer.parseInt(Arrival.substring(10, 13).trim());
+        int minsArrive = Integer.parseInt(Arrival.substring(14, 16).trim());
         //*****************************************************Store flight into Flight*******************
-        flight = new Flight(txtNumber.getText(), laAirplane.getText(), laFrom.getText(), laTo.getText(), new Time(hoursDepart, minsDepart, 0),new Time(hoursArrive, minsArrive, 0), jList1.getSelectedIndex(), laCap.getText(), dep, arr);
-        
+        flight = new Flight(txtNumber.getText(), laAirplane.getText(), laFrom.getText(), laTo.getText(), new Time(hoursDepart, minsDepart, 0), new Time(hoursArrive, minsArrive, 0), jList1.getSelectedIndex(), laCap.getText(), dep, arr);
+
         //*****************************************************Store flight into DB*******************
         flightsDB.addNew(flight);
+
+        addBookings();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        laNumSeats.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String uniqueID = UUID.randomUUID().toString().length() + "";
+        JOptionPane.showMessageDialog(null, uniqueID);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,6 +458,7 @@ public class FightForm extends javax.swing.JFrame {
     private javax.swing.JButton btnFrom;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -433,6 +475,7 @@ public class FightForm extends javax.swing.JFrame {
     public javax.swing.JLabel laAirplane;
     public javax.swing.JLabel laCap;
     public javax.swing.JLabel laFrom;
+    public javax.swing.JLabel laNumSeats;
     public javax.swing.JLabel laTo;
     private javax.swing.JSpinner sArrival;
     private javax.swing.JSpinner sDepart;
@@ -442,4 +485,27 @@ public class FightForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumber;
     public javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void addBookings() {
+        int seatBooking = Integer.parseInt(laNumSeats.getText());
+        String flightNum = txtNumber.getText();
+        BookingsDB bookingsDB = new BookingsDB();
+        StopsDB stopsDB = new StopsDB();
+        btnSave.setText("wait while processing data!");
+        btnSave.setEnabled(false);
+        for (int i = 0; i < seatBooking; i++) {
+            String un = UUID.randomUUID().toString();
+            bookingsDB.addQuick(un, 1);
+
+            stopsDB.addNew(new Stops(un, flightNum));
+            
+        }
+        btnSave.setText("Save");
+        btnSave.setEnabled(true);
+
+    }
+
+    
+        
+
+    }

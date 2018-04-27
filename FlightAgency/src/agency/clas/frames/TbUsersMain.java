@@ -35,7 +35,7 @@ public class TbUsersMain extends javax.swing.JFrame {
         //This method to show all the attendence after user select specific event
         ArrayList<User> arrayUsers = new ArrayList();
 
-        arrayUsers = usersDB.AllUserCaps();
+        arrayUsers = usersDB.AllUsers();
 
         for (int i = 0; i < arrayUsers.size(); i++) {
 
@@ -104,6 +104,11 @@ public class TbUsersMain extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User info", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
@@ -289,6 +294,17 @@ public class TbUsersMain extends javax.swing.JFrame {
         usersDB.update(user);
         showTable();
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        txtId.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+"");
+        txtFirstName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
+        txtLastName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2)+"");
+        txtPhone.setText(jTable1.getValueAt(jTable1.getSelectedRow(),3)+"");
+        txtAddress.setText(jTable1.getValueAt(jTable1.getSelectedRow(),4)+""); 
+        
+        txtEmail.setText(jTable1.getValueAt(jTable1.getSelectedRow(),5)+"");
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
