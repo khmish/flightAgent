@@ -6,13 +6,21 @@
 package agency.clas.frames;
 
 
+import agency.clas.DbTables.FlightsDB;
+import agency.clas.Flight;
+import java.time.LocalDateTime;
 import java.util.*;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.Date;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
-
+import java.sql.Time;
+//import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author whatup
@@ -34,277 +42,55 @@ public class FightForm extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        DialogAirplanes = new javax.swing.JDialog();
-        DialogAirports = new javax.swing.JDialog();
-        jTextField1 = new javax.swing.JTextField();
-        txtAirplane = new javax.swing.JTextField();
-        txtFrom = new javax.swing.JTextField();
-        txtTo = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        btnAirplane = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
         jXDatePicker3 = new org.jdesktop.swingx.JXDatePicker();
-        btnSave = new javax.swing.JButton();
+        laTo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        txtAirplane = new javax.swing.JTextField();
+        btnCap = new javax.swing.JButton();
+        laFrom = new javax.swing.JLabel();
+        txtFrom = new javax.swing.JTextField();
+        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
+        btnFrom = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        btnTo = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        laAirplane = new javax.swing.JLabel();
+        laCap = new javax.swing.JLabel();
+        txtNumber = new javax.swing.JTextField();
         Date date = new Date();
         SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         sDepart = new javax.swing.JSpinner(sm);
         Date date1 = new Date();
         SpinnerDateModel sm1 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         sArrival = new javax.swing.JSpinner(sm1);
-        laAirplane = new javax.swing.JLabel();
-        laFrom = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        btnAirplane = new javax.swing.JButton();
-        btnFrom = new javax.swing.JButton();
-        btnTo = new javax.swing.JButton();
-        btnCap = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jLabel13 = new javax.swing.JLabel();
-        laTo = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout DialogAirplanesLayout = new javax.swing.GroupLayout(DialogAirplanes.getContentPane());
-        DialogAirplanes.getContentPane().setLayout(DialogAirplanesLayout);
-        DialogAirplanesLayout.setHorizontalGroup(
-            DialogAirplanesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        DialogAirplanesLayout.setVerticalGroup(
-            DialogAirplanesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        DialogAirports.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                DialogAirportsWindowOpened(evt);
-            }
-        });
-
-        javax.swing.GroupLayout DialogAirportsLayout = new javax.swing.GroupLayout(DialogAirports.getContentPane());
-        DialogAirports.getContentPane().setLayout(DialogAirportsLayout);
-        DialogAirportsLayout.setHorizontalGroup(
-            DialogAirportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        DialogAirportsLayout.setVerticalGroup(
-            DialogAirportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtTo = new javax.swing.JTextField();
+        txtCap = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        jTextField1.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 81;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 35, 0, 0);
-        getContentPane().add(jTextField1, gridBagConstraints);
-
-        txtAirplane.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 81;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 35, 0, 0);
-        getContentPane().add(txtAirplane, gridBagConstraints);
-
-        txtFrom.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 81;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 35, 0, 0);
-        getContentPane().add(txtFrom, gridBagConstraints);
-
-        txtTo.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 81;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 35, 0, 0);
-        getContentPane().add(txtTo, gridBagConstraints);
-
-        jTextField7.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 79;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 37, 0, 0);
-        getContentPane().add(jTextField7, gridBagConstraints);
-
-        jLabel1.setText("Fight Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(49, 52, 0, 0);
-        getContentPane().add(jLabel1, gridBagConstraints);
-
-        jLabel2.setText("Airplane");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 52, 0, 0);
-        getContentPane().add(jLabel2, gridBagConstraints);
-
-        jLabel3.setText("From");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 52, 0, 0);
-        getContentPane().add(jLabel3, gridBagConstraints);
-
-        jLabel4.setText("To");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 52, 0, 0);
-        getContentPane().add(jLabel4, gridBagConstraints);
-
-        jLabel5.setText("Depart Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 52, 0, 0);
-        getContentPane().add(jLabel5, gridBagConstraints);
-
-        jLabel6.setText("Arrival Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 52, 0, 0);
-        getContentPane().add(jLabel6, gridBagConstraints);
-
-        jLabel7.setText("Captian");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 52, 0, 0);
-        getContentPane().add(jLabel7, gridBagConstraints);
-
-        jLabel9.setText("Status");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 21;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 52, 0, 0);
-        getContentPane().add(jLabel9, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 37, 0, 0);
-        getContentPane().add(jXDatePicker2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 37, 0, 0);
-        getContentPane().add(jXDatePicker3, gridBagConstraints);
 
         btnSave.setText("Save");
         btnSave.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 23;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 149;
-        gridBagConstraints.ipady = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(36, 12, 47, 0);
-        getContentPane().add(btnSave, gridBagConstraints);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(sDepart, "HH:mm");
-        sDepart.setEditor(de);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 55;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 0, 0);
-        getContentPane().add(sDepart, gridBagConstraints);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Flight info"));
+        jPanel1.setName(""); // NOI18N
 
-        JSpinner.DateEditor de1 = new JSpinner.DateEditor(sArrival, "HH:mm");
-        sArrival.setEditor(de1);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 55;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 6, 0, 0);
-        getContentPane().add(sArrival, gridBagConstraints);
-
-        laAirplane.setText("jLabel8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.ipadx = 49;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 9, 0, 0);
-        getContentPane().add(laAirplane, gridBagConstraints);
-
-        laFrom.setText("jLabel8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.ipadx = 49;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 9, 0, 0);
-        getContentPane().add(laFrom, gridBagConstraints);
-
-        jLabel11.setText("jLabel8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 10;
-        gridBagConstraints.ipadx = 104;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 4, 0, 43);
-        getContentPane().add(jLabel11, gridBagConstraints);
+        jLabel3.setText("From");
 
         btnAirplane.setText("jButton2");
         btnAirplane.addActionListener(new java.awt.event.ActionListener() {
@@ -312,57 +98,10 @@ public class FightForm extends javax.swing.JFrame {
                 btnAirplaneActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -48;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
-        getContentPane().add(btnAirplane, gridBagConstraints);
 
-        btnFrom.setText("jButton2");
-        btnFrom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFromActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -48;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(8, 18, 0, 0);
-        getContentPane().add(btnFrom, gridBagConstraints);
+        jLabel5.setText("Depart Date");
 
-        btnTo.setText("jButton2");
-        btnTo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnToActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -48;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 18, 0, 0);
-        getContentPane().add(btnTo, gridBagConstraints);
-
-        btnCap.setText("jButton2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = -48;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 7, 0, 0);
-        getContentPane().add(btnCap, gridBagConstraints);
+        jLabel6.setText("Arrival Date");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "OK", "Canceled", " " };
@@ -372,48 +111,221 @@ public class FightForm extends javax.swing.JFrame {
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 21;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 96;
-        gridBagConstraints.ipady = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(13, 37, 0, 0);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        txtAirplane.setEnabled(false);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel13.setText("Flights panel");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 22, 0, 0);
-        getContentPane().add(jLabel13, gridBagConstraints);
+        btnCap.setText("jButton2");
+        btnCap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapActionPerformed(evt);
+            }
+        });
 
-        laTo.setText("jLabel8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 9;
-        gridBagConstraints.ipadx = 49;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 9, 0, 0);
-        getContentPane().add(laTo, gridBagConstraints);
+        txtFrom.setEnabled(false);
+
+        btnFrom.setText("jButton2");
+        btnFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFromActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Status");
+
+        btnTo.setText("jButton2");
+        btnTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Captian");
+
+        txtNumber.setEnabled(false);
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(sDepart, "HH:mm");
+        sDepart.setEditor(de);
+
+        JSpinner.DateEditor de1 = new JSpinner.DateEditor(sArrival, "HH:mm");
+        sArrival.setEditor(de1);
+
+        jLabel4.setText("To");
+
+        jLabel1.setText("Fight Number");
+
+        txtTo.setEnabled(false);
+
+        txtCap.setEnabled(false);
+
+        jLabel2.setText("Airplane");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35)
+                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(65, 65, 65)
+                        .addComponent(txtAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(laAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(82, 82, 82)
+                        .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(laFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(97, 97, 97)
+                        .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(laTo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(46, 46, 46)
+                        .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(sDepart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(47, 47, 47)
+                        .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(sArrival, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(71, 71, 71)
+                        .addComponent(txtCap, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(btnCap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(laCap, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(78, 78, 78)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtAirplane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAirplane)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(laAirplane)))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFrom)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(laFrom)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTo)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(laTo)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel5))
+                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(sDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel6))
+                    .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(sArrival, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCap)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(laCap)))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DialogAirportsWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_DialogAirportsWindowOpened
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_DialogAirportsWindowOpened
 
     private void btnFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFromActionPerformed
         // TODO add your handling code here:
@@ -433,6 +345,36 @@ public class FightForm extends javax.swing.JFrame {
         TbAirplanesForm airplanesForm= new TbAirplanesForm(this);
         airplanesForm.setVisible(true);
     }//GEN-LAST:event_btnAirplaneActionPerformed
+
+    private void btnCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapActionPerformed
+        // TODO add your handling code here:
+        TbCaptinsForm captinsForm= new TbCaptinsForm(this);
+        captinsForm.setVisible(true);
+    }//GEN-LAST:event_btnCapActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        FlightsDB flightsDB= new FlightsDB();
+        txtNumber.setText(LocalDateTime.now()+"");
+        
+        //format the date *******************
+        java.sql.Date dep = new java.sql.Date(jXDatePicker2.getDate().getYear(), jXDatePicker2.getDate().getMonth(),jXDatePicker2.getDate().getDate());
+        java.sql.Date arr = new java.sql.Date(jXDatePicker3.getDate().getYear(), jXDatePicker3.getDate().getMonth(),jXDatePicker3.getDate().getDate());
+        Flight flight;
+        //format the time to depart*******************
+        String Depart=sDepart.getValue()+"";
+        int hoursDepart=Integer.parseInt(Depart.substring(10, 13).trim());
+        int minsDepart=Integer.parseInt(Depart.substring(14, 16).trim());
+        //format the time to arrive*******************
+        String Arrival=sArrival.getValue()+"";
+        int hoursArrive=Integer.parseInt(Arrival.substring(10, 13).trim());
+        int minsArrive=Integer.parseInt(Arrival.substring(14, 16).trim());
+        //*****************************************************Store flight into Flight*******************
+        flight = new Flight(txtNumber.getText(), laAirplane.getText(), laFrom.getText(), laTo.getText(), new Time(hoursDepart, minsDepart, 0),new Time(hoursArrive, minsArrive, 0), jList1.getSelectedIndex(), laCap.getText(), dep, arr);
+        
+        //*****************************************************Store flight into DB*******************
+        flightsDB.addNew(flight);
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,16 +412,12 @@ public class FightForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog DialogAirplanes;
-    private javax.swing.JDialog DialogAirports;
     private javax.swing.JButton btnAirplane;
     private javax.swing.JButton btnCap;
     private javax.swing.JButton btnFrom;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTo;
     private javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -488,18 +426,20 @@ public class FightForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField7;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker3;
     public javax.swing.JLabel laAirplane;
+    public javax.swing.JLabel laCap;
     public javax.swing.JLabel laFrom;
     public javax.swing.JLabel laTo;
     private javax.swing.JSpinner sArrival;
     private javax.swing.JSpinner sDepart;
     public javax.swing.JTextField txtAirplane;
+    public javax.swing.JTextField txtCap;
     public javax.swing.JTextField txtFrom;
+    private javax.swing.JTextField txtNumber;
     public javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
 }

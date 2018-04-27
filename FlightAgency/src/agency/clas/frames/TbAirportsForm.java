@@ -8,9 +8,6 @@ package agency.clas.frames;
 import agency.clas.Airport;
 import agency.clas.DbTables.AirportsDB;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -104,6 +101,7 @@ public class TbAirportsForm extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        frame.hide();
         AirportsDB airportsDB = new AirportsDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -132,6 +130,7 @@ public class TbAirportsForm extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        frame.show();
         if (from==1) {
             frame.txtFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
             frame.laFrom.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");

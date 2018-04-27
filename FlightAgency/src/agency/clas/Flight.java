@@ -37,7 +37,10 @@ public class Flight {
     this.Depart_Date=Depart_Date;
     this.Arrival_Date=Arrival_Date;
     }
-
+    public Flight()
+    {
+        
+    }
     public String getNumber() {
         return Number;
     }
@@ -112,6 +115,11 @@ public class Flight {
 
     public Date getArrival_Date() {
         return Arrival_Date;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" + "Number=" + Number + ", Airplane_Code=" + Airplane_Code + ", From_Airport_Code=" + From_Airport_Code + ", Distanation_Airport_Code=" + Distanation_Airport_Code + ", Depart_time=" + Depart_time + ", Arrival_time=" + Arrival_time + ", Depart_Date=" + Depart_Date + ", Arrival_Date=" + Arrival_Date + ", Status=" + Status + ", Cap_User_Id=" + Cap_User_Id + '}';
     }
 
     public void setArrival_Date(Date Arrival_Date) {

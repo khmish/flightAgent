@@ -7,6 +7,7 @@ package agency.clas.DbTables;
 
 import agency.clas.User;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -150,5 +151,73 @@ public class UsersDB {
         }
         
         return temp;
+    }
+    public ArrayList<User> AllUserCaps()
+    {
+        ArrayList<User> arrayUsers= new ArrayList<>();
+           try {
+            //
+            database.connect();    
+            ps = database.prepareStatement("SELECT User_Id, User_firstName, User_LastName, User_Phone, User_Address, User_Type, User_Password, User_Email FROM user WHERE User_Type=? ");
+            ps.setInt(1, 2);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                User temp=new User();
+                temp.setId(rs.getString("User_Id"));
+                
+                temp.setFirstName(rs.getString("User_firstName"));
+                temp.setLastName(rs.getString("User_LastName"));
+                temp.setPhone(rs.getString("User_Phone"));
+                temp.setAddress(rs.getString("User_Address"));
+                temp.setTypeUser(rs.getInt("User_Type"));
+                temp.setPassword(rs.getString("User_Password"));
+                temp.setEmail(rs.getString("User_Email"));
+                arrayUsers.add(temp);
+            }
+            
+            ps.close();
+            database.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return arrayUsers;
+    }
+    public ArrayList<User> AllUsers()
+    {
+        ArrayList<User> arrayUsers= new ArrayList<>();
+           try {
+            //
+            database.connect();    
+            ps = database.prepareStatement("SELECT User_Id, User_firstName, User_LastName, User_Phone, User_Address, User_Type, User_Password, User_Email FROM user");
+            
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                User temp=new User();
+                temp.setId(rs.getString("User_Id"));
+                
+                temp.setFirstName(rs.getString("User_firstName"));
+                temp.setLastName(rs.getString("User_LastName"));
+                temp.setPhone(rs.getString("User_Phone"));
+                temp.setAddress(rs.getString("User_Address"));
+                temp.setTypeUser(rs.getInt("User_Type"));
+                temp.setPassword(rs.getString("User_Password"));
+                temp.setEmail(rs.getString("User_Email"));
+                arrayUsers.add(temp);
+            }
+            
+            ps.close();
+            database.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return arrayUsers;
+    }
+    public static void main(String[] args) {
+        UsersDB dB=new UsersDB();
+        System.out.println(dB.AllUserCaps());
     }
 }

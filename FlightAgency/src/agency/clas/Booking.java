@@ -21,6 +21,10 @@ public class Booking {
         this.Status=Status;
         this.NumberOfPassangers=NumberOfPassangers;
     }
+    public Booking()
+    {
+        
+    }
 
     public String getBooking_Code() {
         return Booking_Code;
