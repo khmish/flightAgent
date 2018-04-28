@@ -64,7 +64,7 @@ public class BookingFlightsForm extends javax.swing.JFrame {
         btnFlight = new javax.swing.JButton();
         btnBook = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Booking info"));
 

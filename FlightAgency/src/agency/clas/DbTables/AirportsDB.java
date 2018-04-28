@@ -34,10 +34,10 @@ public class AirportsDB {
             ps.setString(2, newAirport.getCity());
             ps.setString(3, newAirport.getName());
             ps.setString(4, newAirport.getDescription());
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,10 +52,10 @@ public class AirportsDB {
             ps = database.prepareStatement("DELETE FROM airport WHERE Airport_code=?");
             ps.setString(1, code);
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,10 +74,10 @@ public class AirportsDB {
             ps.setString(3, updateAirport.getDescription());
             ps.setString(4, updateAirport.getAirport_code());
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airport.class.getName()).log(Level.SEVERE, null, ex);
         }

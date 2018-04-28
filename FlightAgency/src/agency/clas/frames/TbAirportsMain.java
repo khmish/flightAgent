@@ -7,8 +7,10 @@ package agency.clas.frames;
 
 import agency.clas.Airport;
 import agency.clas.DbTables.AirportsDB;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,14 +22,12 @@ public class TbAirportsMain extends javax.swing.JFrame {
     /**
      * Creates new form TbAirportsForm
      */
-    
-
     public TbAirportsMain() {
         initComponents();
-        
+
     }
-    public void showTable()
-    {
+
+    public void showTable() {
         AirportsDB airportsDB = new AirportsDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -53,7 +53,6 @@ public class TbAirportsMain extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,19 +63,21 @@ public class TbAirportsMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         t = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtDescription = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCity = new javax.swing.JTextField();
+        rbAdd = new javax.swing.JRadioButton();
+        rbUpdate = new javax.swing.JRadioButton();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -109,25 +110,33 @@ public class TbAirportsMain extends javax.swing.JFrame {
 
         txtCode.setEnabled(false);
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Code");
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("City");
 
         jLabel3.setText("Name");
+
+        rbAdd.setSelected(true);
+        rbAdd.setText("Add");
+        rbAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAddActionPerformed(evt);
+            }
+        });
+
+        rbUpdate.setText("Update");
+        rbUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbUpdateActionPerformed(evt);
+            }
+        });
+
+        btnSave.setText("save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,11 +145,6 @@ public class TbAirportsMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdd))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(t)
@@ -153,13 +157,23 @@ public class TbAirportsMain extends javax.swing.JFrame {
                             .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rbAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbUpdate))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbAdd)
+                    .addComponent(rbUpdate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -175,10 +189,8 @@ public class TbAirportsMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(t))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnAdd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSave)
                 .addContainerGap())
         );
 
@@ -191,7 +203,7 @@ public class TbAirportsMain extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,36 +222,77 @@ public class TbAirportsMain extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-       showTable();
-
-        
-    }//GEN-LAST:event_formWindowOpened
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        txtCode.setText(LocalDateTime.now()+"");
-        AirportsDB airportsDB= new AirportsDB();
-        Airport airport= new Airport(txtCode.getText(), txtCity.getText(), txtName.getText(), txtDescription.getText());
-        airportsDB.addNew(airport);
         showTable();
-    }//GEN-LAST:event_btnAddActionPerformed
+        buttonGroup1.add(rbAdd);
+        buttonGroup1.add(rbUpdate);
+        jTable1.setEnabled(false);
+
+    }//GEN-LAST:event_formWindowOpened
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        txtCode.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+"");
-        txtCity.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
-        txtName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2)+"");
-        txtDescription.setText(jTable1.getValueAt(jTable1.getSelectedRow(),3)+"");
-        
+        txtCode.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        txtCity.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+        txtName.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2) + "");
+        txtDescription.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3) + "");
+
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        AirportsDB airportsDB= new AirportsDB();
-        Airport airport= new Airport(txtCode.getText(), txtCity.getText(), txtName.getText(), txtDescription.getText());
-        airportsDB.update(airport);
-        showTable();
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        if (validate1()) {
+            if (buttonGroup1.isSelected(rbAdd.getModel())) {
+                txtCode.setText(LocalDateTime.now() + "");
+                AirportsDB airportsDB = new AirportsDB();
+                Airport airport = new Airport(txtCode.getText(), txtCity.getText(), txtName.getText(), txtDescription.getText());
+                if (airportsDB.addNew(airport)) {
+                    JOptionPane.showMessageDialog(null, "saved");
+                }
+                showTable();
+            } else {
+                AirportsDB airportsDB = new AirportsDB();
+                Airport airport = new Airport(txtCode.getText(), txtCity.getText(), txtName.getText(), txtDescription.getText());
+                if (airportsDB.update(airport)) {
+                    JOptionPane.showMessageDialog(null, "saved");
+                }
+                showTable();
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void rbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAddActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(false);
+    }//GEN-LAST:event_rbAddActionPerformed
+
+    private void rbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbUpdateActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(true);
+    }//GEN-LAST:event_rbUpdateActionPerformed
+    public boolean validate1() {
+
+        if (!txtCity.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            txtCity.setBackground(Color.red);
+            return false;
+        }
+        if (!txtName.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            txtName.setBackground(Color.red);
+            return false;
+        }
+
+        clear1();
+
+        return true;
+    }
+
+    public void clear1() {
+
+        txtCity.setBackground(Color.WHITE);
+        txtName.setBackground(Color.WHITE);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -278,14 +331,16 @@ public class TbAirportsMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSave;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JRadioButton rbAdd;
+    private javax.swing.JRadioButton rbUpdate;
     private javax.swing.JLabel t;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCode;

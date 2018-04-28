@@ -7,6 +7,7 @@ package agency.clas.frames;
 
 import agency.clas.DbTables.UsersDB;
 import agency.clas.User;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -167,16 +168,17 @@ public class Register extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        UsersDB usersDB = new UsersDB();
-        User user = new User();
-        user.setId(txtId.getText());
-        
-        user.setFirstName(txtFirstName.getText());
-        user.setLastName(txtLastName.getText());
-        user.setPhone(txtPhone.getText());
-        user.setAddress(txtAddress.getText());
-        String pass=txtPassword.getText();
-        /*if(txtPassword.getText() == txtPassword.getText())
+        if (validate1()) {
+            UsersDB usersDB = new UsersDB();
+            User user = new User();
+            user.setId(txtId.getText());
+
+            user.setFirstName(txtFirstName.getText());
+            user.setLastName(txtLastName.getText());
+            user.setPhone(txtPhone.getText());
+            user.setAddress(txtAddress.getText());
+            String pass = txtPassword.getText();
+            /*if(txtPassword.getText() == txtPassword.getText())
         {
             pass = txtPassword.getText() ;
         }
@@ -185,13 +187,58 @@ public class Register extends javax.swing.JFrame {
             return;
         }*/
 
-        user.setPassword(pass);
-        user.setEmail(txtEmail.getText());
-        if(usersDB.addNew(user)){
-            JOptionPane.showConfirmDialog(this, "saved");
-            
+            user.setPassword(pass);
+            user.setEmail(txtEmail.getText());
+            if (usersDB.addNew(user)) {
+                JOptionPane.showMessageDialog(null, "saved");
+                Login login= new Login();
+                login.setVisible(true);
+                dispose();
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+    public boolean validate1() {
+
+        if (!txtId.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtId.setBackground(Color.red);
+            return false;
+        } else if (!txtFirstName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtFirstName.setBackground(Color.red);
+            return false;
+        } else if (!txtLastName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtLastName.setBackground(Color.red);
+            return false;
+        } else if (!txtPhone.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtPhone.setBackground(Color.red);
+            return false;
+        } else if (!txtEmail.getText().matches("^(.+)@(.+)$")) {
+            clear1();
+            System.out.println("txtEmail");
+            txtEmail.setBackground(Color.red);
+            return false;
+        } else if (!txtPassword.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            System.out.println("pass");
+            txtPassword.setBackground(Color.red);
+            return false;
+        }
+        clear1();
+
+        return true;
+    }
+
+    public void clear1() {
+        txtId.setBackground(Color.WHITE);
+        txtFirstName.setBackground(Color.WHITE);
+        txtLastName.setBackground(Color.WHITE);
+        txtPhone.setBackground(Color.WHITE);
+        txtEmail.setBackground(Color.WHITE);
+        txtPassword.setBackground(Color.WHITE);
+    }
 
     /**
      * @param args the command line arguments
