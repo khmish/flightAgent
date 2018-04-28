@@ -14,16 +14,19 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
-    String  UserId;
+    String UserId;
     String TypeUser;
+
     public MainForm() {
         initComponents();
     }
-    public MainForm(String  UserId,String TypeUser) {
+
+    public MainForm(String UserId, String TypeUser) {
         initComponents();
-        this.UserId=UserId;
-        this.TypeUser=TypeUser;
+        this.UserId = UserId;
+        this.TypeUser = TypeUser;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +47,11 @@ public class MainForm extends javax.swing.JFrame {
         UsersPanel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Control panel", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
@@ -71,6 +79,11 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         btnHistory.setText("Flight History");
+        btnHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoryActionPerformed(evt);
+            }
+        });
 
         btnBooking.setText("Booking");
         btnBooking.addActionListener(new java.awt.event.ActionListener() {
@@ -143,16 +156,16 @@ public class MainForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(69, 69, 69)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,39 +173,57 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
         // TODO add your handling code here:
-        UserProfile profile= new UserProfile(UserId);
+        UserProfile profile = new UserProfile(UserId);
         profile.setVisible(true);
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnAirportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirportsActionPerformed
         // TODO add your handling code here:
-        TbAirportsMain airportsMain= new TbAirportsMain();
+        TbAirportsMain airportsMain = new TbAirportsMain();
         airportsMain.setVisible(true);
     }//GEN-LAST:event_btnAirportsActionPerformed
 
     private void btnAirplaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirplaneActionPerformed
         // TODO add your handling code here:
-        TbAirplanesMain airplanesMain= new TbAirplanesMain();
+        TbAirplanesMain airplanesMain = new TbAirplanesMain();
         airplanesMain.setVisible(true);
     }//GEN-LAST:event_btnAirplaneActionPerformed
 
     private void btnFlightsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlightsActionPerformed
         // TODO add your handling code here:
-        FightForm fightForm= new FightForm();
+        FightForm fightForm = new FightForm();
         fightForm.setVisible(true);
     }//GEN-LAST:event_btnFlightsActionPerformed
 
     private void UsersPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsersPanelActionPerformed
         // TODO add your handling code here:
-        TbUsersMain tbUsersMain= new TbUsersMain();
+        TbUsersMain tbUsersMain = new TbUsersMain();
         tbUsersMain.setVisible(true);
     }//GEN-LAST:event_UsersPanelActionPerformed
 
     private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
         // TODO add your handling code here:
-        BookingFlightsForm flightsForm= new BookingFlightsForm(UserId);
+        BookingFlightsForm flightsForm = new BookingFlightsForm(UserId);
         flightsForm.setVisible(true);
     }//GEN-LAST:event_btnBookingActionPerformed
+
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        // TODO add your handling code here:
+        HistoryMain historyMain = new HistoryMain(UserId);
+        historyMain.setVisible(true);
+    }//GEN-LAST:event_btnHistoryActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        if (TypeUser == "0") {
+            
+            btnAirplane.setEnabled(false);
+            btnFlights.setEnabled(false);
+            btnAirports.setEnabled(false);
+            UsersPanel.setEnabled(false);
+            btnClasses.setEnabled(false);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

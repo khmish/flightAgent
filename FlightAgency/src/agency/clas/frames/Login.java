@@ -115,7 +115,7 @@ public class Login extends javax.swing.JFrame {
         UsersDB usersDB= new UsersDB();
         String id=TxtUserId.getText();
         String pass=TxtUserPassword.getText();
-        if(usersDB.login(id,pass)==0 || usersDB.login(id,pass)==2)
+        if(usersDB.login(id,pass)==0 )
         {
             MainForm mainForm=new MainForm(id, "0");
             mainForm.setVisible(true);

@@ -29,7 +29,7 @@ public class TbUsersMain extends javax.swing.JFrame {
 
     public boolean validate1() {
 
-        if (!txtId.getText().matches("^\\d{10}$")) {
+        if (!txtId.getText().matches("^\\d{1,10}$")) {
             clear1();
             txtId.setBackground(Color.red);
             return false;
