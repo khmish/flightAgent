@@ -18,6 +18,10 @@ public class Stops {
         this.Flight_Number=Flight_Number;
         this.Booking_Code=Booking_Code;
     }
+    public Stops()
+    {
+        
+    }
     public String getBooking_Code() {
         return Booking_Code;
     }

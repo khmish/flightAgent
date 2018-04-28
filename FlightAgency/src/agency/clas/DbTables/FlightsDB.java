@@ -42,10 +42,10 @@ public class FlightsDB {
             ps.setDate(10, newFlight.getArrival_Date());
             
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Flight.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,10 +62,10 @@ public class FlightsDB {
             
             ps.setString(1, number);
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Flight.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,10 +90,10 @@ public class FlightsDB {
             ps.setDate(8, updateFlight.getArrival_Date());
             ps.setString(9, updateFlight.getNumber());
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Flight.class.getName()).log(Level.SEVERE, null, ex);
         }

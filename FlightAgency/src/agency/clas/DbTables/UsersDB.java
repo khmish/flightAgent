@@ -34,10 +34,10 @@ public class UsersDB {
             ps.setString(7, User.getEmail());
             
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,10 +51,10 @@ public class UsersDB {
             ps.setString(1, Id);
             
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,10 +76,10 @@ public class UsersDB {
             ps.setString(6, updateUser.getEmail());
             ps.setString(7, updateUser.getId());
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -216,8 +216,5 @@ public class UsersDB {
         
         return arrayUsers;
     }
-    public static void main(String[] args) {
-        UsersDB dB=new UsersDB();
-        System.out.println(dB.AllUserCaps());
-    }
+    
 }

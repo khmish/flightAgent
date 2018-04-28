@@ -7,6 +7,7 @@ package agency.clas.frames;
 
 import agency.clas.DbTables.UsersDB;
 import agency.clas.User;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +19,15 @@ public class UserProfile extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
-    String Id="10014223";
+    String Id = "10014223";
+
     public UserProfile() {
         initComponents();
     }
+
     public UserProfile(String Id) {
         initComponents();
-        this.Id=Id;
+        this.Id = Id;
     }
 
     /**
@@ -56,7 +59,7 @@ public class UserProfile extends javax.swing.JFrame {
         txtFirstName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -188,26 +191,30 @@ public class UserProfile extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        UsersDB usersDB = new UsersDB();
-        User user = new User();
-        
-        user.setId(txtId.getText());
-        user.setFirstName(txtFirstName.getText());
-        user.setLastName(txtLastName.getText());
-        user.setPassword(txtPassword.getText());
-        
-        user.setPhone(txtPhone.getText());
-        user.setEmail(txtEmail.getText());
-        user.setAddress(txtAddress.getText());
-        usersDB.update(user);
-        
+        if (validate1()) {
+            UsersDB usersDB = new UsersDB();
+            User user = new User();
+
+            user.setId(txtId.getText());
+            user.setFirstName(txtFirstName.getText());
+            user.setLastName(txtLastName.getText());
+            user.setPassword(txtPassword.getText());
+
+            user.setPhone(txtPhone.getText());
+            user.setEmail(txtEmail.getText());
+            user.setAddress(txtAddress.getText());
+            if(usersDB.update(user)){
+                JOptionPane.showMessageDialog(null, "saved!");
+            }
+        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         UsersDB usersDB = new UsersDB();
         User user = new User();
-        user=usersDB.findByUserId(Id);
+        user = usersDB.findByUserId(Id);
         txtId.setText(user.getId());
         txtFirstName.setText(user.getFirstName());
         txtLastName.setText(user.getLastName());
@@ -217,6 +224,49 @@ public class UserProfile extends javax.swing.JFrame {
         txtEmail.setText(user.getEmail());
         txtAddress.setText(user.getAddress());
     }//GEN-LAST:event_formWindowOpened
+
+    public boolean validate1() {
+
+        if (!txtId.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtId.setBackground(Color.red);
+            return false;
+        } else if (!txtFirstName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtFirstName.setBackground(Color.red);
+            return false;
+        } else if (!txtLastName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtLastName.setBackground(Color.red);
+            return false;
+        } else if (!txtPhone.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtPhone.setBackground(Color.red);
+            return false;
+        } else if (!txtEmail.getText().matches("^(.+)@(.+)$")) {
+            clear1();
+            System.out.println("txtEmail");
+            txtEmail.setBackground(Color.red);
+            return false;
+        } else if (!txtPassword.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            System.out.println("pass");
+            txtPassword.setBackground(Color.red);
+            return false;
+        }
+        clear1();
+
+        return true;
+    }
+
+    public void clear1() {
+        txtId.setBackground(Color.WHITE);
+        txtFirstName.setBackground(Color.WHITE);
+        txtLastName.setBackground(Color.WHITE);
+        txtPhone.setBackground(Color.WHITE);
+        txtEmail.setBackground(Color.WHITE);
+        txtPassword.setBackground(Color.WHITE);
+    }
 
     /**
      * @param args the command line arguments

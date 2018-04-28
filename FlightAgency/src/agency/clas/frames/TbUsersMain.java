@@ -7,7 +7,9 @@ package agency.clas.frames;
 
 import agency.clas.DbTables.UsersDB;
 import agency.clas.User;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,16 +22,59 @@ public class TbUsersMain extends javax.swing.JFrame {
     /**
      * Creates new form TbCaptinsForm
      */
-    
     public TbUsersMain() {
         initComponents();
+
     }
-    public void showTable()
+
+    public boolean validate1() {
+
+        if (!txtId.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtId.setBackground(Color.red);
+            return false;
+        } else if (!txtFirstName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtFirstName.setBackground(Color.red);
+            return false;
+        } else if (!txtLastName.getText().matches("^[a-zA-Z]+$")) {
+            clear1();
+            txtLastName.setBackground(Color.red);
+            return false;
+        } else if (!txtPhone.getText().matches("^\\d{10}$")) {
+            clear1();
+            txtPhone.setBackground(Color.red);
+            return false;
+        } else if (!txtEmail.getText().matches("^(.+)@(.+)$")) {
+            clear1();
+            System.out.println("txtEmail");
+            txtEmail.setBackground(Color.red);
+            return false;
+        } else if (!txtPassword.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            System.out.println("pass");
+            txtPassword.setBackground(Color.red);
+            return false;
+        } 
+        clear1();
+
+        return true;
+    }
+    public void clear1()
     {
+        txtId.setBackground(Color.WHITE);
+        txtFirstName.setBackground(Color.WHITE);
+        txtLastName.setBackground(Color.WHITE);
+        txtPhone.setBackground(Color.WHITE);
+        txtEmail.setBackground(Color.WHITE);
+        txtPassword.setBackground(Color.WHITE);
+    }
+
+    public void showTable() {
         UsersDB usersDB = new UsersDB();
 
         DefaultTableModel model = new DefaultTableModel();
-        String[] column = {"Id", "FirstName", "LastName", "Phone","Address","Email"};
+        String[] column = {"Id", "FirstName", "LastName", "Phone", "Address", "Email"};
         model.setColumnIdentifiers(column);
 
         //This method to show all the attendence after user select specific event
@@ -53,7 +98,7 @@ public class TbUsersMain extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +108,7 @@ public class TbUsersMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -83,10 +129,11 @@ public class TbUsersMain extends javax.swing.JFrame {
         txtRePassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        rbUpdate = new javax.swing.JRadioButton();
+        rbAdd = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -104,6 +151,7 @@ public class TbUsersMain extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.setEnabled(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -133,17 +181,10 @@ public class TbUsersMain extends javax.swing.JFrame {
 
         jLabel7.setText("Re Password");
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -152,9 +193,9 @@ public class TbUsersMain extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
@@ -175,11 +216,9 @@ public class TbUsersMain extends javax.swing.JFrame {
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdd)))
-                .addGap(12, 12, 12))
+                        .addGap(124, 124, 124)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,11 +256,24 @@ public class TbUsersMain extends javax.swing.JFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnAdd))
+                .addComponent(btnSave)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        rbUpdate.setText("Update");
+        rbUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbUpdateActionPerformed(evt);
+            }
+        });
+
+        rbAdd.setSelected(true);
+        rbAdd.setText("Add");
+        rbAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,7 +283,11 @@ public class TbUsersMain extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rbUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -240,9 +296,17 @@ public class TbUsersMain extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(rbUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -253,58 +317,87 @@ public class TbUsersMain extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         showTable();
-        
+        buttonGroup1.add(rbAdd);
+        buttonGroup1.add(rbUpdate);
+
     }//GEN-LAST:event_formWindowOpened
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        UsersDB usersDB = new UsersDB();
-        User user = new User();
-        user.setId(txtId.getText());
-        
-        user.setFirstName(txtFirstName.getText());
-        user.setLastName(txtLastName.getText());
-        user.setPhone(txtPhone.getText());
-        user.setAddress(txtAddress.getText());
-        String pass=txtPassword.getText();
-        
-
-        user.setPassword(pass);
-        user.setEmail(txtEmail.getText());
-        usersDB.addNew(user);
-               
-        showTable();
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        UsersDB usersDB = new UsersDB();
-        User user = new User();
-        user.setId(txtId.getText());
-        
-        user.setFirstName(txtFirstName.getText());
-        user.setLastName(txtLastName.getText());
-        user.setPhone(txtPhone.getText());
-        user.setAddress(txtAddress.getText());
-        String pass=txtPassword.getText();
-        
-
-        user.setPassword(pass);
-        user.setEmail(txtEmail.getText());
-        usersDB.update(user);
-        showTable();
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        txtId.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+"");
-        txtFirstName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
-        txtLastName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2)+"");
-        txtPhone.setText(jTable1.getValueAt(jTable1.getSelectedRow(),3)+"");
-        txtAddress.setText(jTable1.getValueAt(jTable1.getSelectedRow(),4)+""); 
-        
-        txtEmail.setText(jTable1.getValueAt(jTable1.getSelectedRow(),5)+"");
+        txtId.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        txtFirstName.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+        txtLastName.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2) + "");
+        txtPhone.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 3) + "");
+        txtAddress.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4) + "");
+
+        txtEmail.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5) + "");
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null, validate1());
+        if (validate1()) {
+            if (buttonGroup1.isSelected(rbAdd.getModel()))// add====================================
+            {
+                UsersDB usersDB = new UsersDB();
+                User user = new User();
+                user.setId(txtId.getText());
+
+                user.setFirstName(txtFirstName.getText());
+                user.setLastName(txtLastName.getText());
+                user.setPhone(txtPhone.getText());
+                user.setAddress(txtAddress.getText());
+                String pass = txtPassword.getText();
+
+                user.setPassword(pass);
+                user.setEmail(txtEmail.getText());
+                if(usersDB.addNew(user)){
+                    JOptionPane.showMessageDialog(null, "saved!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "no changes!");
+                }
+
+                showTable();
+            } else// update====================================================================
+            {
+                UsersDB usersDB = new UsersDB();
+                User user = new User();
+                user.setId(txtId.getText());
+
+                user.setFirstName(txtFirstName.getText());
+                user.setLastName(txtLastName.getText());
+                user.setPhone(txtPhone.getText());
+                user.setAddress(txtAddress.getText());
+                String pass = txtPassword.getText();
+
+                user.setPassword(pass);
+                user.setEmail(txtEmail.getText());
+                
+                if(usersDB.update(user)){
+                    JOptionPane.showMessageDialog(null, "saved!");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "no changes!");
+                }
+                showTable();
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void rbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbUpdateActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(true);
+        txtId.setEditable(false);
+    }//GEN-LAST:event_rbUpdateActionPerformed
+
+    private void rbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAddActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(false);
+        txtId.setEditable(true);
+    }//GEN-LAST:event_rbAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,8 +436,8 @@ public class TbUsersMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSave;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -357,6 +450,8 @@ public class TbUsersMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JRadioButton rbAdd;
+    private javax.swing.JRadioButton rbUpdate;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;

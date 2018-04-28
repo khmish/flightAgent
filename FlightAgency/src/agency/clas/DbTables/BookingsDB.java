@@ -33,10 +33,11 @@ public class BookingsDB {
             ps.setInt(3, newBooking.getStatus());
             ps.setInt(4, newBooking.getNumberOfPassangers());
 
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
+
         } catch (SQLException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,10 +74,10 @@ public class BookingsDB {
             
             
             ps.setString(1, code);
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,10 +96,10 @@ public class BookingsDB {
             ps.setInt(2, updateAirport.getStatus());
             ps.setInt(3, updateAirport.getNumberOfPassangers());
             ps.setString(4, updateAirport.getBooking_Code());
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
         }

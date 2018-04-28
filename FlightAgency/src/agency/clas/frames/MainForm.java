@@ -73,6 +73,11 @@ public class MainForm extends javax.swing.JFrame {
         btnHistory.setText("Flight History");
 
         btnBooking.setText("Booking");
+        btnBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookingActionPerformed(evt);
+            }
+        });
 
         btnProfile.setText("User Profile");
         btnProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +187,12 @@ public class MainForm extends javax.swing.JFrame {
         TbUsersMain tbUsersMain= new TbUsersMain();
         tbUsersMain.setVisible(true);
     }//GEN-LAST:event_UsersPanelActionPerformed
+
+    private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
+        // TODO add your handling code here:
+        BookingFlightsForm flightsForm= new BookingFlightsForm(UserId);
+        flightsForm.setVisible(true);
+    }//GEN-LAST:event_btnBookingActionPerformed
 
     /**
      * @param args the command line arguments

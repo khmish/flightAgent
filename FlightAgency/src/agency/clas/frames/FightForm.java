@@ -10,6 +10,7 @@ import agency.clas.DbTables.FlightsDB;
 import agency.clas.DbTables.StopsDB;
 import agency.clas.Flight;
 import agency.clas.Stops;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.Date;
@@ -75,7 +76,6 @@ public class FightForm extends javax.swing.JFrame {
         txtCap = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         laNumSeats = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -319,13 +319,6 @@ public class FightForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -335,8 +328,7 @@ public class FightForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(jButton1))
+                        .addGap(132, 132, 132))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
@@ -346,9 +338,7 @@ public class FightForm extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
 
@@ -382,40 +372,62 @@ public class FightForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        FlightsDB flightsDB = new FlightsDB();
-        txtNumber.setText(LocalDateTime.now() + "");
+        if (validate1()) {
+            FlightsDB flightsDB = new FlightsDB();
+            txtNumber.setText(LocalDateTime.now() + "");
 
-        //format the date *******************
-        java.sql.Date dep = new java.sql.Date(jXDatePicker2.getDate().getYear(), jXDatePicker2.getDate().getMonth(), jXDatePicker2.getDate().getDate());
-        java.sql.Date arr = new java.sql.Date(jXDatePicker3.getDate().getYear(), jXDatePicker3.getDate().getMonth(), jXDatePicker3.getDate().getDate());
-        Flight flight;
-        //format the time to depart*******************
-        String Depart = sDepart.getValue() + "";
-        int hoursDepart = Integer.parseInt(Depart.substring(10, 13).trim());
-        int minsDepart = Integer.parseInt(Depart.substring(14, 16).trim());
-        //format the time to arrive*******************
-        String Arrival = sArrival.getValue() + "";
-        int hoursArrive = Integer.parseInt(Arrival.substring(10, 13).trim());
-        int minsArrive = Integer.parseInt(Arrival.substring(14, 16).trim());
-        //*****************************************************Store flight into Flight*******************
-        flight = new Flight(txtNumber.getText(), laAirplane.getText(), laFrom.getText(), laTo.getText(), new Time(hoursDepart, minsDepart, 0), new Time(hoursArrive, minsArrive, 0), jList1.getSelectedIndex(), laCap.getText(), dep, arr);
+            //format the date *******************
+            java.sql.Date dep = new java.sql.Date(jXDatePicker2.getDate().getYear(), jXDatePicker2.getDate().getMonth(), jXDatePicker2.getDate().getDate());
+            java.sql.Date arr = new java.sql.Date(jXDatePicker3.getDate().getYear(), jXDatePicker3.getDate().getMonth(), jXDatePicker3.getDate().getDate());
+            Flight flight;
+            //format the time to depart*******************
+            String Depart = sDepart.getValue() + "";
+            int hoursDepart = Integer.parseInt(Depart.substring(10, 13).trim());
+            int minsDepart = Integer.parseInt(Depart.substring(14, 16).trim());
+            //format the time to arrive*******************
+            String Arrival = sArrival.getValue() + "";
+            int hoursArrive = Integer.parseInt(Arrival.substring(10, 13).trim());
+            int minsArrive = Integer.parseInt(Arrival.substring(14, 16).trim());
+            //*****************************************************Store flight into Flight*******************
+            flight = new Flight(txtNumber.getText(), laAirplane.getText(), laFrom.getText(), laTo.getText(), new Time(hoursDepart, minsDepart, 0), new Time(hoursArrive, minsArrive, 0), jList1.getSelectedIndex(), laCap.getText(), dep, arr);
 
-        //*****************************************************Store flight into DB*******************
-        flightsDB.addNew(flight);
+            //*****************************************************Store flight into DB*******************
+            if (flightsDB.addNew(flight)) {
 
-        addBookings();
+                addBookings();
+            }
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         laNumSeats.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
+    public boolean validate1() {
+        try {
+            if (jXDatePicker2.getDate().toString().isEmpty()) {
+                clear1();
+                jXDatePicker2.setBackground(Color.red);
+                return false;
+            } else if (jXDatePicker3.getDate().toString().isEmpty()) {
+                clear1();
+                jXDatePicker3.setBackground(Color.red);
+                return false;
+            }
+        } catch (Exception e) {
+            jXDatePicker2.setBackground(Color.red);
+            jXDatePicker3.setBackground(Color.red);
+            return false;
+        }
+        clear1();
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String uniqueID = UUID.randomUUID().toString().length() + "";
-        JOptionPane.showMessageDialog(null, uniqueID);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        return true;
+    }
+
+    public void clear1() {
+        jXDatePicker2.setBackground(Color.WHITE);
+        jXDatePicker2.setBackground(Color.WHITE);
+    }
 
     /**
      * @param args the command line arguments
@@ -458,7 +470,6 @@ public class FightForm extends javax.swing.JFrame {
     private javax.swing.JButton btnFrom;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -498,14 +509,12 @@ public class FightForm extends javax.swing.JFrame {
             bookingsDB.addQuick(un, 1);
 
             stopsDB.addNew(new Stops(un, flightNum));
-            
+
         }
         btnSave.setText("Save");
         btnSave.setEnabled(true);
+        JOptionPane.showMessageDialog(null, "Saved!");
 
     }
 
-    
-        
-
-    }
+}

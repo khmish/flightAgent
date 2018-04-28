@@ -132,6 +132,7 @@ public class TbFlights extends javax.swing.JFrame {
         // TODO add your handling code here:
         bookingFlightsForm.txtFNumber.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
         bookingFlightsForm.txtFightInfo.setText("From:\n"+jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "\n"+jTable1.getValueAt(jTable1.getSelectedRow(), 2) + "\nTo: \n"+jTable1.getValueAt(jTable1.getSelectedRow(), 3) + "\n" +jTable1.getValueAt(jTable1.getSelectedRow(), 4) + "\n");
+        bookingFlightsForm.ava(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
         bookingFlightsForm.show();
         dispose();
     }//GEN-LAST:event_btnEditActionPerformed

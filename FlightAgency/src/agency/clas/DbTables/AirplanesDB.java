@@ -33,10 +33,10 @@ public class AirplanesDB {
             ps.setInt(2, newAirplane.getTotal_Sets());
             ps.setString(3, newAirplane.getDescription());
             
-            ps.execute();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airplane.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,10 +52,10 @@ public class AirplanesDB {
             ps = database.prepareStatement("DELETE FROM airplane WHERE Airplane_code=?");
             ps.setString(1, code);
                         
-            ps.executeUpdate();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airplane.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,10 +71,10 @@ public class AirplanesDB {
             ps.setInt(1, updateAirplane.getTotal_Sets());
             ps.setString(2, updateAirplane.getDescription());
             ps.setString(3, updateAirplane.getAirplane_Code());            
-            ps.executeUpdate();
+            int x=ps.executeUpdate();
             ps.close();
             database.close();
-            return true;
+            return (x>0)?true:false;
         } catch (SQLException ex) {
             Logger.getLogger(Airplane.class.getName()).log(Level.SEVERE, null, ex);
         }

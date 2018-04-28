@@ -7,8 +7,10 @@ package agency.clas.frames;
 
 import agency.clas.Airplane;
 import agency.clas.DbTables.AirplanesDB;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,19 +23,20 @@ public class TbAirplanesMain extends javax.swing.JFrame {
      * Creates new form TbAirplanesForm
      */
     FightForm fightForm;
-    boolean isfightForm=false;
+    boolean isfightForm = false;
+
     public TbAirplanesMain() {
         initComponents();
-        isfightForm=false;
+        isfightForm = false;
     }
+
     public TbAirplanesMain(FightForm fightForm) {
         initComponents();
-        this.fightForm=fightForm;
-        isfightForm=true;
+        this.fightForm = fightForm;
+        isfightForm = true;
     }
-    
-    public void showTable()
-    {
+
+    public void showTable() {
         AirplanesDB airplanesDB = new AirplanesDB();
 
         DefaultTableModel model = new DefaultTableModel();
@@ -58,6 +61,7 @@ public class TbAirplanesMain extends javax.swing.JFrame {
         }
         jTable1.setModel(model);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,17 +71,19 @@ public class TbAirplanesMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnEdit = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtDescription = new javax.swing.JTextField();
         txtSeats = new javax.swing.JTextField();
         txtCode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        rbAdd = new javax.swing.JRadioButton();
+        rbUpdate = new javax.swing.JRadioButton();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,6 +103,7 @@ public class TbAirplanesMain extends javax.swing.JFrame {
 
             }
         ));
+        jTable1.setEnabled(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -108,58 +115,75 @@ public class TbAirplanesMain extends javax.swing.JFrame {
 
         jLabel2.setText("Seats No");
 
-        btnEdit.setText("Update");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Description");
+
+        txtSeats.setText("50");
 
         txtCode.setEnabled(false);
 
         jLabel3.setText("Code");
+
+        rbAdd.setSelected(true);
+        rbAdd.setText("add");
+        rbAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAddActionPerformed(evt);
+            }
+        });
+
+        rbUpdate.setText("update");
+        rbUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbUpdateActionPerformed(evt);
+            }
+        });
+
+        btnSave.setText("save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rbAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbUpdate))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap())
+                        .addGap(79, 79, 79)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbAdd)
+                    .addComponent(rbUpdate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -171,11 +195,9 @@ public class TbAirplanesMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSeats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEdit)
-                    .addComponent(btnAdd))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSave)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,42 +233,84 @@ public class TbAirplanesMain extends javax.swing.JFrame {
             fightForm.hide();
         } catch (Exception e) {
         }
-        
+        buttonGroup1.add(rbAdd);
+        buttonGroup1.add(rbUpdate);
         showTable();
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
-        AirplanesDB airplanesDB = new AirplanesDB();
-        Airplane airplane= new Airplane();
-        airplane.setAirplane_Code(txtCode.getText());
-        airplane.setDescription(txtDescription.getText());
-        airplane.setTotal_Sets(Integer.parseInt(txtSeats.getText()));
-        airplanesDB.update(airplane);
-        showTable();
-        
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        txtCode.setText(LocalDateTime.now()+"");
-        AirplanesDB airplanesDB = new AirplanesDB();
-        Airplane airplane= new Airplane();
-        airplane.setAirplane_Code(txtCode.getText());
-        airplane.setDescription(txtDescription.getText());
-        airplane.setTotal_Sets(Integer.parseInt(txtSeats.getText()));
-        airplanesDB.addNew(airplane);
-        showTable();
-    }//GEN-LAST:event_btnAddActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        txtCode.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+"");
-        txtDescription.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+"");
-        txtSeats.setText(jTable1.getValueAt(jTable1.getSelectedRow(),2)+"");
+        txtCode.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "");
+        txtDescription.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "");
+        txtSeats.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2) + "");
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        if (validate1()) {
+            if (buttonGroup1.isSelected(rbAdd.getModel())) {
+                txtCode.setText(LocalDateTime.now() + "");
+                AirplanesDB airplanesDB = new AirplanesDB();
+                Airplane airplane = new Airplane();
+                airplane.setAirplane_Code(txtCode.getText());
+                airplane.setDescription(txtDescription.getText());
+                airplane.setTotal_Sets(Integer.parseInt(txtSeats.getText()));
+
+                if (airplanesDB.addNew(airplane)) {
+                    JOptionPane.showMessageDialog(null, "saved");
+                }
+                showTable();
+            } else {
+                AirplanesDB airplanesDB = new AirplanesDB();
+                Airplane airplane = new Airplane();
+                airplane.setAirplane_Code(txtCode.getText());
+                airplane.setDescription(txtDescription.getText());
+                airplane.setTotal_Sets(Integer.parseInt(txtSeats.getText()));
+                if (airplanesDB.update(airplane)) {
+                    JOptionPane.showMessageDialog(null, "saved");
+                }
+                showTable();
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void rbAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAddActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(false);
+        txtCode.setText("");
+        txtDescription.setText("");
+        txtSeats.setText("50");
+    }//GEN-LAST:event_rbAddActionPerformed
+
+    private void rbUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbUpdateActionPerformed
+        // TODO add your handling code here:
+        jTable1.setEnabled(true);
+    }//GEN-LAST:event_rbUpdateActionPerformed
+    public boolean validate1() {
+
+        if (!txtDescription.getText().matches("^[a-zA-Z0-9]+$")) {
+            clear1();
+            txtDescription.setBackground(Color.red);
+            return false;
+        }
+        if (!txtSeats.getText().matches("^\\d+$")) {
+            clear1();
+            txtSeats.setBackground(Color.red);
+            return false;
+        }
+        clear1();
+
+        return true;
+    }
+
+    public void clear1() {
+
+        txtDescription.setBackground(Color.WHITE);
+        txtSeats.setBackground(Color.WHITE);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -285,14 +349,16 @@ public class TbAirplanesMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSave;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JRadioButton rbAdd;
+    private javax.swing.JRadioButton rbUpdate;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtSeats;
